@@ -11,7 +11,7 @@ if [ -z $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS ]; then
 fi
 
 pdftotext -raw -enc UTF-8 -nopgbrk "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
-gnome-terminal -x /home/fatallis/.local/share/nemo/scripts/format.py "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%.*}.txt"
+gnome-terminal -x /home/fatallis/.local/share/nemo/scripts/txt_reformat.py "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%.*}.txt"
 rm "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%.*}.txt"
 
 if [ $? -eq 0 ]; then
