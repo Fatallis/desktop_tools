@@ -9,12 +9,11 @@ if [ -z $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS ]; then
     # If it's blank, set it equal to $1
     NAUTILUS_SCRIPT_SELECTED_FILE_PATHS=$1
 fi
-
-gnome-terminal -x /home/fatallis/.linuxbrew/bin/gdrive upload "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
-
+notify-send -t 5000 -i /usr/share/icons/gnome/32x32/status/info.png "Uploading $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS ..."
+/home/fatallis/.linuxbrew/bin/gdrive upload "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
 
 if [ $? -eq 0 ]; then
-    notify-send -t 5000 -i /usr/share/icons/gnome/32x32/status/info.png "Uploading of $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS Finished"
+    notify-send -t 5000 -i /usr/share/icons/gnome/32x32/status/info.png "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS Uploaded"
     #rm "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
 else
     notify-send -t 5000 -i /usr/share/icons/gnome/32x32/status/info.png "Uploading of $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS Failed"
