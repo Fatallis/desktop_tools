@@ -12,8 +12,8 @@ from desktop_tools import *
 paths=sys.argv[1:]
 my = MyNotification()
 
-my.send_notification("Desktop Tools", "Uploading "+str(len(paths))+" files to Google Drive!")
+my.send_notification("Desktop Tools", "Converting "+str(len(paths))+" pdf files to txt!")
 
-gdrive_upload(paths)
+pdftotext(paths)
 
-my.send_notification("Desktop Tools", str(len(paths))+" files have been uploaded to Google Drive!")
+my.send_notification("Desktop Tools", str(len(paths))+" files have been converted to txt!")

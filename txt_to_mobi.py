@@ -40,7 +40,7 @@ if __name__ == "__main__":
 	paths=sys.argv[1:]
 
 	my = MyNotification()
-	my.send_notification("TXT tools", "Converting txt files to mobi in progress...")
+	my.send_notification("Desktop tools", "Converting txt files to mobi in progress...")
 
 	txt2mobi_commands='.'+uuid.uuid4().hex+'.txt'
 	with open(txt2mobi_commands, 'w') as commands:
@@ -49,7 +49,7 @@ if __name__ == "__main__":
 			commands.write('ebook-convert "'+p+'" "'+mobi_name+'" --input-encoding=UTF-8\n')
 
 	run_parallel(txt2mobi_commands)
-	my.send_notification("TXT tools", str(len(paths))+" files have been converted!")
+	my.send_notification("Desktop tools", str(len(paths))+" files have been converted!")
 
 
 

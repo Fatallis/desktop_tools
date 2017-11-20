@@ -2,20 +2,20 @@
 # -*- coding: UTF-8 -*-
 
 import os, sys, subprocess, uuid, shutil, fileinput, gi
-gi.require_version("Notify", "0.7")
+gi.require_version('Notify', '0.7')
 from joblib import Parallel, delayed
 from gi.repository import GObject
 from gi.repository import Notify
-from chunks_epub import *
+from desktop_tools import *
+from langdetect import detect
 
 
 if __name__ == "__main__":
 
 	paths=sys.argv[1:]
-	translation=True
-	
+
 	my = MyNotification()
-	my.send_notification("Epub tools", "Translation process in progress...")
+	my.send_notification("Desktop tools", "Creating chunks process in progress...")
 
 	lang=detect_lang(paths)
 
@@ -23,16 +23,10 @@ if __name__ == "__main__":
 		ebook=DesktopJob(p,lang)
 		ebook.create_dir()
 		ebook.split()
-		ebook.epub2txt()
-		ebook.translate()
-		ebook.clean_null()
-		ebook.txt2epub(ebook.tmp_txt_trans_files)
-		ebook.word_count()
-		ebook.create_chunks()
+		ebook.merge()
 		ebook.clean_dir()
-
 	
-	my.send_notification("Epub tools", str(len(paths))+ " files have been translated and splitted in chunks!")
+	my.send_notification("Desktop tools", str(len(paths))+" files have been splitted in chunks!")
 
 
 
